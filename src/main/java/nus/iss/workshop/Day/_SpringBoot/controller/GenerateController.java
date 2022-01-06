@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +35,7 @@ public class GenerateController {
         logger.info("From the form " + generate.getNumberVal());
         int numberOfRandomNumbers = generate.getNumberVal();
         if(numberOfRandomNumbers > 10) {
+            //throw new RandomNumberException();
             model.addAttribute("errorMessage", "Exceeded more than 10 value");
             return "error";
         }
@@ -43,7 +43,7 @@ public class GenerateController {
             "number1.jpg","number2.jpg","number3.jpg","number4.jpg","number5.jpg",
             "number6.jpg","number7.jpg","number8.jpg","number9.jpg","number10"};
 
-            List<String> selectedImg = new ArrayList<>();
+            List<String> selectedImg = new ArrayList<String>();
             Random rand = new Random();
             Set<Integer> uniqueGeneratedNumbers = new LinkedHashSet<Integer>();
             while(uniqueGeneratedNumbers.size() < numberOfRandomNumbers) {
