@@ -8,6 +8,7 @@
     <title>Random Number Result</title>
 </head>
 <body>
+  <h1>Your list of <span th:text="${numberOfRandomNumbers}"></span> random numbers</h1>
     <ul th:each="numVal : ${randNumsResult}">
         <li th:text="${numVal}"></li>
     

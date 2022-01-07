@@ -14,10 +14,13 @@
         th:action="@{/generate}"  
         th:object="${generate}"  
         method="post"
-    >  
+    >
+        <!-- action="#" is to invalidate the default action command, so the th:action can be triggered, can also be removed -->   
+        <!-- th:action will direct the page to /generate page after the client click on generate button at the page-->
+        <!-- th:object endpoint object passed from the GenerateController -->
         <p>
             <input type="text" th:field="*{numberVal}"/> <!--reference attribute of the generate object. Generate.java.getNumberVal()-->
-            <input type="submit" value="Generate"/>
+            <input type="submit" value="Generate"/>  <!-- 2 way binding -->
         </p>
     </form>
 </body>
