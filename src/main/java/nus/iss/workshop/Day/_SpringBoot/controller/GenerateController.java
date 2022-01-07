@@ -21,21 +21,28 @@ import nus.iss.workshop.Day._SpringBoot.model.Generate;
 @Controller
 public class GenerateController {
     private Logger logger = LoggerFactory.getLogger(GenerateController.class);
-    
+    // end point to forward to generate.html
+    // root of the path is set therefore when user access this
+    // web app will alwys default to this method
     @GetMapping("/")  //create a mapping at generate
     public String showGenerateForm(Model model) {
+        // instantiate the Generate class where it represent the form
+        // of the generate html page
         Generate generate = new Generate();
+        //set the generate class into the page scope of the generate html
         //generate.setNumberVal(10000);
         model.addAttribute("generate", generate);
-        return "generate";
+        // forward this endpoint to the page 'generate.html'
+        return "generate"; 
     }
-    
+    // this endpoint is to handle the form submission
     @PostMapping("/generate")
     public String generateNumbers(@ModelAttribute Generate generate, Model model) {
         logger.info("From the form " + generate.getNumberVal());
+        // capture the number of times that the user inputon the random image page
         int numberOfRandomNumbers = generate.getNumberVal();
         if(numberOfRandomNumbers > 10) {
-            //throw new RandomNumberException();
+            // throw new RandomNumberException();
             model.addAttribute("errorMessage", "Exceeded more than 10 value");
             return "error";
         }
